@@ -1,26 +1,39 @@
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
-
-//Import di Classi Java necessarie al funzionamento del programma
 import java.util.Scanner;
 
-// Classe principale, con metodo main
-class Esercizio {
-    // Il programma parte con una chiamata a main().
-    public static void main(String args[])
-    {
-        //Variabili del programma
-        String nome;
+public class EsameStudenti {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Quanti studenti vuoi inserire? ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
 
-        //Creo l'oggetto in per l'input da tastiera
-        Scanner in = new Scanner( System.in );
+        String[] nomi = new String[n];
+        int[] votazioni = new int[n];
+        int[] crediti = new int[n];
 
-        //Leggo l'input da tastiera
-        System.out.print("Inserisci il tuo nome: ");
-        nome = in.nextLine();
+        for (int i = 0; i < n; i++) {
+            System.out.print("Inserisci il nome dello studente " + (i + 1) + ": ");
+            nomi[i] = scanner.nextLine();
+            System.out.print("Inserisci la votazione di " + nomi[i] + ": ");
+            votazioni[i] = scanner.nextInt();
+            System.out.print("Inserisci i crediti formativi di " + nomi[i] + ": ");
+            crediti[i] = scanner.nextInt();
+            scanner.nextLine();
+        }
 
-        //Output del nome acquisito da tastiera
-        System.out.println("Ciao "+nome+"!");
+        int somma = 0;
+        for (int voto : votazioni) {
+            somma += voto;
+        }
+        double media = (double) somma / n;
+
+        System.out.println("Studenti con votazione superiore alla media e almeno 6 crediti:");
+        for (int i = 0; i < n; i++) {
+            if (votazioni[i] > media && crediti[i] >= 6) {
+                System.out.println(nomi[i]);
+            }
+        }
+
+        scanner.close();
     }
 }
-
-//LEGGERE LE ISTRUZIONI NEL FILE README.md
